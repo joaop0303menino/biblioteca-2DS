@@ -68,3 +68,14 @@ def Atualizar_historico():
     cursor.commit()  
     
     ver_historico()
+
+def deletar_historico():
+    
+    ver_historico()
+    
+    ra = input("Digite o RA do aluno que deseja deletar do historico: ")
+    
+    cursor.execute(f" delete from historico where codigo = {ra}")
+    cursor.commit()
+    
+    ver_historico()
