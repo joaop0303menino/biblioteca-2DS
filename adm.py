@@ -56,3 +56,14 @@ def atualizar_administrador():
     cursor.commit()  
     
     ver_administrador()
+    
+def deletar_administrador():
+    
+    ver_administrador()
+    
+    id = input("Digite o ID do administrador que deseja deletar: ")
+    
+    cursor.execute(f" delete from administrador where id = {id}")
+    cursor.commit()
+    
+    ver_administrador()
