@@ -28,3 +28,30 @@ def inserir_livros():
             cursor.commit()  
         else:   
             ver_livros()
+
+def atualizar_livro():
+    
+    ver_livros()
+    
+    print("Digite o número da opção que deseja alterar")
+    print(f"1) Código do livro\n 2) Nome do livro\n 3) Quantidade de livro")
+    escolha = int(input("qual opção você deseja: "))
+    
+    opcao = ''
+    mudanca = input(f"Digite a sua Alteração: ")
+    Oq_mudar = input(f"Digite o código do livro que deseja alterar: ")
+    
+    if escolha == 1:
+        opcao = 'codigo'
+    elif escolha == 2:
+        opcao = 'nome'
+    elif escolha == 3: 
+        opcao = 'quantidade'
+    else:
+        print("Opção inválida tente novamente")
+        atualizar_livro() 
+        
+    cursor.execute(f"update livro set {opcao} = ? where codigo = ?",(mudanca, Oq_mudar))
+    cursor.commit()  
+    
+    ver_livros()
