@@ -9,3 +9,4 @@ def ver_administrador():
     
     tabela = pd.read_sql(f'select * from administrador',conexao)  
     print(tabela)
+
