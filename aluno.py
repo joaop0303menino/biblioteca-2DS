@@ -29,3 +29,32 @@ def inserir_aluno():
             cursor.commit()  
         else:   
             ver_aluno()
+            
+def atualizar_aluno():
+    
+    ver_aluno()
+    
+    print("Digite o número da opção que deseja alterar")
+    print(f"1) RA do aluno\n 2) Nome do aluno\n 3) sobrenome do aluno\n 4) série do aluno")
+    escolha = int(input("qual opção você deseja: "))
+    
+    opcao = ''
+    mudanca = input(f"Digite a sua Alteração: ")
+    Oq_mudar = input(f"Digite o RA do aluno que deseja alterar: ")
+    
+    if escolha == 1:
+        opcao = 'RA'
+    elif escolha == 2:
+        opcao = 'nome'
+    elif escolha == 3: 
+        opcao = 'sobrenome'
+    elif escolha == 4:
+        opcao = 'serie'
+    else:
+        print("Opção inválida tente novamente")
+        atualizar_aluno() 
+        
+    cursor.execute(f"update aluno set {opcao} = ? where RA = ?",(mudanca, Oq_mudar))
+    cursor.commit()  
+    
+    ver_aluno()
