@@ -29,3 +29,30 @@ def inserir_administrador():
             cursor.commit()  
         else:   
             ver_administrador()
+            
+def atualizar_administrador():
+    
+    ver_administrador()
+    
+    print("Digite o número da opção que deseja alterar")
+    print(f"1) ID do administrador\n 2) login do administrador\n 3) senha de administrador")
+    escolha = int(input("qual opção você deseja: "))
+    
+    opcao = ''
+    mudanca = input(f"Digite a sua Alteração: ")
+    Oq_mudar = input(f"Digite o ID do administrador que deseja alterar: ")
+    
+    if escolha == 1:
+        opcao = 'id'
+    elif escolha == 2:
+        opcao = 'login'
+    elif escolha == 3: 
+        opcao = 'senha'
+    else:
+        print("Opção inválida tente novamente")
+        atualizar_administrador() 
+        
+    cursor.execute(f"update administrador set {opcao} = ? where id = ?",(mudanca, Oq_mudar))
+    cursor.commit()  
+    
+    ver_administrador()
