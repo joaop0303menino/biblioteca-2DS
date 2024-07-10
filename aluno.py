@@ -58,3 +58,14 @@ def atualizar_aluno():
     cursor.commit()  
     
     ver_aluno()
+    
+def deletar_aluno():
+    
+    ver_aluno()
+    
+    ra = input("Digite o RA do aluno que deseja deletar: ")
+    
+    cursor.execute(f" delete from aluno where RA = {ra}")
+    cursor.commit()
+    
+    ver_aluno()
