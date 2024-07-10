@@ -55,3 +55,14 @@ def atualizar_usuario():
     cursor.commit()  
     
     ver_usuario()
+    
+def deletar_usuario():
+    
+    ver_usuario()
+    
+    id = input("Digite o ID do usuario que deseja deletar: ")
+    
+    cursor.execute(f" delete from usuario where id = {id}")
+    cursor.commit()
+    
+    ver_usuario()
