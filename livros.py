@@ -55,3 +55,14 @@ def atualizar_livro():
     cursor.commit()  
     
     ver_livros()
+
+def deletar_livro():
+    
+    ver_livros()
+    
+    ra = input("Digite o código do livro que deseja deletar: ")
+    
+    cursor.execute(f" delete from livro where codigo = {ra}")
+    cursor.commit()
+    
+    ver_livros()
