@@ -19,8 +19,9 @@ def inserir_aluno():
         dados = input('Deseja continuar: ')
         
         if dados != "!n":
-        
+            
             ra = input(f'Digite o RA do aluno: ')
+            #zap = input('Digite o número de whatsapp:\nEsse número irá servir pra enviar a notificação de quando o prazo de entrega do livro estiver proximo. ')
             nome = input(f'Digite o nome do aluno: ')
             sobrenome = input(f"Digite o sobrenome do aluno: ")
             serie = input(f'Digite a série do aluno: ')

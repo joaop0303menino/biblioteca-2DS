@@ -3,7 +3,7 @@ use [dados da biblioteca ]
 CREATE TABLE administrador(
 	id int primary key,
 	login varchar(50) not null,
-	senha varchar(200) not null
+	senha varchar(2000) not null
 )
 
 CREATE TABLE usuario(
@@ -34,6 +34,7 @@ CREATE TABLE historico(
 	codigo_livro int foreign key references livro(codigo),
 	dataRetirada datetime not null,
 	dataDevolucao datetime not null, 
+	observacao varchar(6000), /*Tem que adicionar no SQL ainda*/
 	estado varchar(10) not null,
 	check (estado in ('pendente', 'entregue'))
-)
+	)

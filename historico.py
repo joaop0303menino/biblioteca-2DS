@@ -26,6 +26,7 @@ def inserir_historico(datetime):
             ra = input("Digite o RA do aluno: ")
             codigo_livro = int(input(f'Digite o código do livro: '))
             estado = input(f"Digite o status de entrega (pendente/entregue): ").lower()
+            obs = input('Digite a observação do livro, quais os estados que ele foi entregue\nEx:\nSe ele estava danificado ou se ele estava sem danificações')
             
             data_retirada = datetime.today()
             data_retirada_formatada = data_retirada.strftime("%d/%m/%y")
@@ -37,7 +38,7 @@ def inserir_historico(datetime):
                 print("Opção inválida tente novamente")
                 inserir_historico(datetime)
 
-            cursor.execute(f"insert into historico(RA_aluno,codigo_livro,dataRetirada,dataDevolucao,estado) values (?,?,?,?,?)",(ra,codigo_livro,data_retirada_formatada,data_devolucao_formatada,estado))
+            cursor.execute(f"insert into historico(RA_aluno,codigo_livro,dataRetirada,dataDevolucao,estado) values (?,?,?,?,?,?)",(ra,codigo_livro,data_retirada_formatada,data_devolucao_formatada,estado, obs))
             cursor.commit()    
     
         ver_historico()

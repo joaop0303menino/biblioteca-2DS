@@ -12,7 +12,7 @@ def pagina_principal(pagina: ft.Page):
     text_explicacao2 = ft.Text('Aqui você pode cadastrar livros, usuários e permitir que alunos peguem livros com mais segurança')
     
     login_inserido = ft.TextField(label='Insira seu login de ADM ou Usuário')
-    senha_inserida = ft.TextField(label='Insira a sua senha ADM:', password=True)
+    senha_inserida = ft.TextField(label='Insira a sua senha de ADM ou o ID de usuário:', password=True)
 
     def menu_main(e):
         pagina.go('/menu')
