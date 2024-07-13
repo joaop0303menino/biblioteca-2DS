@@ -12,21 +12,16 @@ def ver_historico():
     tabela = pd.read_sql(f'select * from historico',conexao)  
     print(tabela)
     
-def inserir_historico(datetime):
+def inserir_historico(datetime,ra,codigo_livro,estado,continuar):
     
     print(f"pressione enter para continuar \npara sair digite '!n'")
-    dados = ""
+    continuar = ""
     
     
-    while dados != "!n":
-        dados = input('Deseja continuar: ')
+    while continuar != "!n":
+        continuar = input('Deseja continuar: ')
         
-        if dados != "!n":
-            
-            ra = input("Digite o RA do aluno: ")
-            codigo_livro = int(input(f'Digite o código do livro: '))
-            estado = input(f"Digite o status de entrega (pendente/entregue): ").lower()
-            obs = input('Digite a observação do livro, quais os estados que ele foi entregue\nEx:\nSe ele estava danificado ou se ele estava sem danificações')
+        if continuar != "!n":
             
             data_retirada = datetime.today()
             data_retirada_formatada = data_retirada.strftime("%d/%m/%y")
@@ -38,22 +33,19 @@ def inserir_historico(datetime):
                 print("Opção inválida tente novamente")
                 inserir_historico(datetime)
 
-            cursor.execute(f"insert into historico(RA_aluno,codigo_livro,dataRetirada,dataDevolucao,estado) values (?,?,?,?,?,?)",(ra,codigo_livro,data_retirada_formatada,data_devolucao_formatada,estado, obs))
+            cursor.execute(f"insert into historico(RA_aluno,codigo_livro,dataRetirada,dataDevolucao,estado) values (?,?,?,?,?)",(ra,codigo_livro,data_retirada_formatada,data_devolucao_formatada,estado))
             cursor.commit()    
     
         ver_historico()
         
-def Atualizar_historico():
+def Atualizar_historico(escolha,mudanca,Oq_mudar,opcao):
     
     ver_historico()
     
     print("Digite o número da opção que deseja alterar")
     print(f"1) Ra do aluno\n 2) Código do livro\n 3) estado")
-    escolha = int(input("qual opção você deseja: "))
     
     opcao = ''
-    mudanca = input(f"Digite a sua Alteração: ")
-    Oq_mudar = input(f"Digite o RA do aluno que deseja alterar: ")
     
     if escolha == 1:
         opcao = 'RA_aluno'
@@ -70,11 +62,9 @@ def Atualizar_historico():
     
     ver_historico()
 
-def deletar_historico():
+def deletar_historico(ra):
     
     ver_historico()
-    
-    ra = input("Digite o RA do aluno que deseja deletar do historico: ")
     
     cursor.execute(f" delete from historico where codigo = {ra}")
     cursor.commit()

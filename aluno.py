@@ -10,38 +10,29 @@ def ver_aluno():
     tabela = pd.read_sql(f'select * from aluno',conexao)  
     print(tabela)
     
-def inserir_aluno():
+def inserir_aluno(ra,nome,sobrenome,serie,continuar):
     
     print(f"pressione enter para continuar \npara sair digite '!n'")
-    dados = ""
+    continuar = ""
     
-    while dados != "!n":
-        dados = input('Deseja continuar: ')
+    while continuar != "!n":
+        continuar = input('Deseja continuar: ')
         
-        if dados != "!n":
-            
-            ra = input(f'Digite o RA do aluno: ')
-            #zap = input('Digite o número de whatsapp:\nEsse número irá servir pra enviar a notificação de quando o prazo de entrega do livro estiver proximo. ')
-            nome = input(f'Digite o nome do aluno: ')
-            sobrenome = input(f"Digite o sobrenome do aluno: ")
-            serie = input(f'Digite a série do aluno: ')
-            
+        if continuar != "!n":
+
             cursor.execute(f"insert into aluno(RA,nome,sobrenome,serie) values ({ra},'{nome}','{sobrenome}','{serie}')")
             cursor.commit()  
         else:   
             ver_aluno()
             
-def atualizar_aluno():
+def atualizar_aluno(escolha,mudanca,Oq_mudar,opcao):
     
     ver_aluno()
     
     print("Digite o número da opção que deseja alterar")
     print(f"1) RA do aluno\n 2) Nome do aluno\n 3) sobrenome do aluno\n 4) série do aluno")
-    escolha = int(input("qual opção você deseja: "))
     
     opcao = ''
-    mudanca = input(f"Digite a sua Alteração: ")
-    Oq_mudar = input(f"Digite o RA do aluno que deseja alterar: ")
     
     if escolha == 1:
         opcao = 'RA'
@@ -60,11 +51,9 @@ def atualizar_aluno():
     
     ver_aluno()
     
-def deletar_aluno():
+def deletar_aluno(ra):
     
     ver_aluno()
-    
-    ra = input("Digite o RA do aluno que deseja deletar: ")
     
     cursor.execute(f" delete from aluno where RA = {ra}")
     cursor.commit()

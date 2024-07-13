@@ -10,36 +10,31 @@ def ver_usuario():
     tabela = pd.read_sql(f'select * from usuario',conexao)  
     print(tabela)
     
-def inserir_usuario():
+def inserir_usuario(id_usuario,nome,sobrenome,continuar):
     
     print(f"pressione enter para continuar \npara sair digite '!n'")
-    dados = ""
+    continuar = ""
     
-    while dados != "!n":
-        dados = input('Deseja continuar: ')
+    while continuar != "!n":
+        continuar = input('Deseja continuar: ')
         
-        if dados != "!n":
-        
-            id = int(input(f'Digite o código do usuario: '))
-            nome = input(f'Digite o nome do usuario: ')
-            sobrenome = input(f'Digite a sobrenome de usuario: ')
-            
+        if continuar != "!n":
+
             cursor.execute(f"insert into usuario(id,nome,sobrenome) values ({id},'{nome}','{sobrenome}')")
             cursor.commit()  
+            
         else:   
             ver_usuario()
 
-def atualizar_usuario():
+def atualizar_usuario(escolha,mudanca,Oq_mudar,opcao):
     
     ver_usuario()
     
     print("Digite o número da opção que deseja alterar")
     print(f"1) ID do usuario\n 2) Nome do usuario\n 3) sobrenome de usuario")
-    escolha = int(input("qual opção você deseja: "))
     
     opcao = ''
-    mudanca = input(f"Digite a sua Alteração: ")
-    Oq_mudar = input(f"Digite o ID do usuario que deseja alterar: ")
+    
     
     if escolha == 1:
         opcao = 'id'
@@ -56,13 +51,11 @@ def atualizar_usuario():
     
     ver_usuario()
     
-def deletar_usuario():
+def deletar_usuario(id_usuario):
     
     ver_usuario()
     
-    id = input("Digite o ID do usuario que deseja deletar: ")
-    
-    cursor.execute(f" delete from usuario where id = {id}")
+    cursor.execute(f" delete from usuario where id = {id_usuario}")
     cursor.commit()
     
     ver_usuario()

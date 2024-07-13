@@ -10,36 +10,29 @@ def ver_livros():
     tabela = pd.read_sql(f'select * from livro',conexao)  
     print(tabela)
   
-def inserir_livros():
+def inserir_livros(codigo_livro,nome_livro,quantidade,continuar):
     
     print(f"pressione enter para continuar \npara sair digite '!n'")
-    dados = ""
+    continuar = ""
     
-    while dados != "!n":
-        dados = input('Deseja continuar: ')
+    while continuar != "!n":
+        continuar = input('Deseja continuar: ')
         
-        if dados != "!n":
-        
-            codigo = int(input(f'Digite o código do livro: '))
-            nome = input(f'Digite o nome do livro: ')
-            quantidade = int(input(f'Digite a quantidade de livros: '))
-            
-            cursor.execute(f"insert into livro(codigo,nome,quantidade) values ({codigo},'{nome}',{quantidade})")
+        if continuar != "!n":
+            cursor.execute(f"insert into livro(codigo,nome,quantidade) values ({codigo_livro},'{nome_livro}',{quantidade})")
             cursor.commit()  
+            
         else:   
             ver_livros()
 
-def atualizar_livro():
+def atualizar_livro(escolha,mudanca,Oq_mudar,opcao):
     
     ver_livros()
     
     print("Digite o número da opção que deseja alterar")
     print(f"1) Código do livro\n 2) Nome do livro\n 3) Quantidade de livro")
-    escolha = int(input("qual opção você deseja: "))
     
     opcao = ''
-    mudanca = input(f"Digite a sua Alteração: ")
-    Oq_mudar = input(f"Digite o código do livro que deseja alterar: ")
     
     if escolha == 1:
         opcao = 'codigo'
@@ -56,13 +49,11 @@ def atualizar_livro():
     
     ver_livros()
 
-def deletar_livro():
+def deletar_livro(codigo_livro):
     
     ver_livros()
     
-    ra = input("Digite o código do livro que deseja deletar: ")
-    
-    cursor.execute(f" delete from livro where codigo = {ra}")
+    cursor.execute(f" delete from livro where codigo = {codigo_livro}")
     cursor.commit()
     
     ver_livros()

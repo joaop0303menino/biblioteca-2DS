@@ -1,5 +1,6 @@
 import integracao_sql
 import pandas as pd
+from hashlib import sha256
 
 integracao_sql.juncao_sql()
 
