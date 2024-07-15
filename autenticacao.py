@@ -15,7 +15,7 @@ def verificar_user_ou_adm(login):
     usuario_logins = [row[0] for row in cursor.fetchall()]
         
     if login in adm_logins:
-        return True
+        return False
         
     elif login in usuario_logins:
        return False

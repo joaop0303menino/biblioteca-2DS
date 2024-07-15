@@ -3,7 +3,7 @@ import pyodbc
 def  juncao_sql():
     dados_conexao = (
         'DRIVER={SQL Server};'
-        'Server=DESKTOP-JHQABHK;'
+        'Server=Bruno;'
         'DATABASE=dados da biblioteca;'
     )
 
