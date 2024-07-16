@@ -5,6 +5,7 @@ import aluno as al
 import historico as his
 import livros as li
 import usuario as user
+import funcoes_globais as defs
 from functools import lru_cache
 
 @lru_cache
@@ -134,19 +135,19 @@ def pagina_principal(pagina: ft.Page):
         nonlocal click_id
         click_id = 'id'
         pagina.go('/update_id')
-    click_id = ''
+    click_update_user = click_id = ''
 
     def update_nome(e):
         nonlocal click_nome
         click_nome = 'nome'
         pagina.go('/update_nome')
-    click_nome = ''
+    click_update_user = click_nome = ''
     
     def update_sobrenome(e):
         nonlocal click_sobrenome
         click_sobrenome = 'sobrenome'
         pagina.go('/update_sobrenome')
-    click_sobrenome = ''
+    click_update_user = click_sobrenome = ''
 
     txt_id = ft.TextField(label='Id:')
     txt_nome = ft.TextField(label='Nome:')
@@ -172,8 +173,9 @@ def pagina_principal(pagina: ft.Page):
     input_sobrenome_atualizado = ft.TextField(label='Insira o sobrenome atulizado:')
     bt_update_sobrenome = ft.ElevatedButton('Atualizar sobrenome', on_click=lambda _: user.atualizar_usuario(click_sobrenome,input_sobrenome_atual.value, input_sobrenome_atualizado.value))
 
-    #Informações para ver a tabela de usuário
-    read_table_user = user.read_table_user()
+    #Informações para ver a tabela
+    #read_table = defs.read_table()
+    read_table_user = defs.read_table(click_update_user)
 
 
     #bt_read_table_user = ft.ElevatedButton('Ver tabela', on_click=read_table_user)

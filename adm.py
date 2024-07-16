@@ -2,13 +2,11 @@ import integracao_sql
 import pandas as pd
 from hashlib import sha256
 
-integracao_sql.juncao_sql()
-
 cursor, conexao = integracao_sql.juncao_sql()
 
 def ver_administrador():
     
-    tabela = pd.read_sql(f'select * from administrador',conexao)  
+    tabela = pd.read_sql(f'SELECT * FROM administrador',conexao)  
     print(tabela)
 
 def inserir_administrador():
@@ -26,10 +24,10 @@ def inserir_administrador():
             senha = input(f'Digite a senha de administrador: ')
             senha_criptografada = sha256(senha.encode()).hexdigest()
             
-            cursor.execute(f"insert into administrador(id,login,senha) values (?,?,?)",(id,login,senha_criptografada))
+            cursor.execute(f"INSERT INTO administrador(id,login,senha) VALUES ({id},{'login'},{'senha_criptografada'});!n")
             cursor.commit()  
-        else:   
-            ver_administrador()
+        ''' else:   
+            ver_administrador()'''
             
 def atualizar_administrador():
     

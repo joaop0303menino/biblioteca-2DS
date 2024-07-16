@@ -15,7 +15,7 @@ def verificar_user_ou_adm(login):
     usuario_logins = [row[0] for row in cursor.fetchall()]
         
     if login in adm_logins:
-        return False
+        return True
         
     elif login in usuario_logins:
        return False
@@ -35,7 +35,7 @@ def autenticar(login, senha):
     cursor.execute(f"select senha from administrador where login = ?",(login))
     adm_senha = [row[0] for row in cursor.fetchall()]
     
-    cursor.execute(f"select id from usuario where nome = ?",(login))
+    cursor.execute(f"select senha from usuario where nome = ?",(login))
     usuario_senha = [row[0] for row in cursor.fetchall()]
         
     if login in adm_logins:
