@@ -10,7 +10,6 @@ def juncao_sql():
         database="u895973460_Biblioteca"
 
     )
-
     
     try:
         print('Conexão bem sucedida')
@@ -18,3 +17,5 @@ def juncao_sql():
         return cursor, mydb
     except:
         return "Erro na conexão"
+
+
